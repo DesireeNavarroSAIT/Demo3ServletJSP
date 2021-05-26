@@ -15,12 +15,13 @@
         <h1>Hello World Form</h1>
         <form method="post" action="helloWorld">
             <label>First Name:</label>
-            <input type="text" name="firstname">
+            <input type="text" name="firstname" value="${firstname}" placeholder="John">
             <br>
             <label>Last Name:</label>
-            <input type="text" name="lastname">
+            <input type="text" name="lastname" value="${lastname}" placeholder="Smith">
             <br>
             <input type="submit" value="Say Hello">
         </form>
+        <p>${message}</p>
     </body>
 </html>

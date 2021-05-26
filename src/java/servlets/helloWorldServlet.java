@@ -15,7 +15,7 @@ public class helloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //this will display the requested JSP as a view
-        getServletContext().getRequestDispatcher("/WEB-INF/HelloWorld.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/helloWorldJSP.jsp").forward(request, response);
 
     }
 
@@ -26,11 +26,19 @@ public class helloWorldServlet extends HttpServlet {
         String firstname = request.getParameter("first_name");
         String lastname = request.getParameter("last_name");
         
+        if(firstname == null || firstname.equals("") || lastname == null || lastname.equals("")){
+            request.setAttribute("message","Invalid entry. Please enter both a first and last name");
+            //forward the request and response object to the JSP
+            //display the form again
+            getServletContext().getRequestDispatcher("/WEB-INF/helloWorldJSP.jsp").forward(request,response);
+            return;//very important! Stop the code call.
+        }
+        
         request.setAttribute("firstName",firstname);
         request.setAttribute("lastName",lastname);
         
         //display the helloWorld JSP
-        getServletContext().getRequestDispatcher("/WEB-INF/HelloWorld.jsp");
+        getServletContext().getRequestDispatcher("/WEB-INF/HelloWorld.jsp").forward(request, response);
         
         //no code here...
 
